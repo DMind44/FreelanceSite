@@ -1,0 +1,17 @@
+title: Rapid Game Prototype
+description: A proof-of-concept demo of the mechanics, around 5-10 minutes of gameplay. Engine tools for level or asset creation can be made for additional fee. Will be made in Godot engine
+price: $60/hr (1 hour minimum)
+image: penguin.png
+link: mailto:david64dev@protonmail.com?subject=Rapid%20Prototyping
+
+title: Game Dev Tools
+description: A specific tool for your game design workflow, made in the engine of your choice (Godot, Unity, or Unreal). Data architecture design included. Examples include: level editor, asset creator, audio interface, etc.
+price: $50/hr (1 hour minimum)
+image: leveleditor.png
+link: mailto:david64dev@protonmail.com?subject=Tools
+
+title: TTRPG Minigame/Experience 
+description: A custom minigame or interactable experience designed to enrich your players' tabletop roleplaying experience. Will be delivered as a web game (hosting options will be discussed).
+price: $30/hr (1 hour minimum)
+image: dndpuzzle.png
+link: mailto:david64dev@protonmail.com?subject=TTRPG%20Experience

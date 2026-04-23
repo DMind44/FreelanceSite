@@ -7,7 +7,7 @@ tags: ['tabletop', 'gamedev']
 role: 'Usability Lead'
 tech: []
 year: 2024
-featured: false
+featured: true 
 links: []
 ---
 ## Premise

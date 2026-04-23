@@ -7,7 +7,7 @@ tags: ['unity', 'gamedev']
 role: 'Programmer & Designer'
 tech: ['Unity']
 year: 2025
-featured: false
+featured: true 
 links: []
 ---
 ## Premise

@@ -19,34 +19,34 @@ export interface SocialLink {
 }
 
 const siteData: SiteData = {
-  name: "Your Name",
-  title: "Your Name — Game Developer",
+  name: "David Mindlin",
+  title: "David Mindlin — Game Developer",
   tagline: "Freelance Game Developer & Programmer",
-  email: "you@example.com",
+  email: "david64dev@protonmail.com",
   phone: "",
-  location: "City, Country",
-  url: "https://yoursite.com",
+  location: "Los Angeles, California",
+  url: "https://david64.dev",
 
   social: [
     {
       label: "GitHub",
-      url: "https://github.com/yourname",
+      url: "https://github.com/dmind44",
       icon: "github",
     },
     {
       label: "Itch.io",
-      url: "https://yourname.itch.io",
+      url: "https://david064.itch.io/",
       icon: "itchio",
     },
     {
       label: "LinkedIn",
-      url: "https://linkedin.com/in/yourname",
+      url: "https://linkedin.com/in/david-mindlin",
       icon: "linkedin",
     },
   ],
 
   footer: {
-    copyright: "© 2024 Your Name. All rights reserved.",
+    copyright: "© 2024 David Mindlin. All rights reserved.",
   },
 };
 

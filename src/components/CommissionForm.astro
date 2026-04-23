@@ -1,0 +1,186 @@
+---
+import styles from '../styles/commission-form.module.css';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  service: CollectionEntry<'services'>;
+}
+
+const { service } = Astro.props;
+const { data } = service;
+const formId = `commission-form-${data.slug}`;
+---
+
+<form id={formId} class={styles.form} data-service-slug={data.slug}>
+  <!-- Contact Fields -->
+  <div class={styles.fieldGroup}>
+    <label class={styles.label} for={`${formId}-name`}>
+      Your Name<span class={styles.required}>*</span>
+    </label>
+    <input
+      id={`${formId}-name`}
+      class={styles.input}
+      type="text"
+      name="contact_name"
+      required
+    />
+  </div>
+
+  <div class={styles.fieldGroup}>
+    <label class={styles.label} for={`${formId}-email`}>
+      Your Email<span class={styles.required}>*</span>
+    </label>
+    <input
+      id={`${formId}-email`}
+      class={styles.input}
+      type="email"
+      name="contact_email"
+      required
+    />
+  </div>
+
+  <!-- Dynamic Fields from frontmatter -->
+  {data.form.fields.map((field) => (
+    <div class={styles.fieldGroup}>
+      <label class={styles.label} for={`${formId}-${field.name}`}>
+        {field.label}
+        {field.required && <span class={styles.required}>*</span>}
+      </label>
+      {field.type === 'textarea' ? (
+        <textarea
+          id={`${formId}-${field.name}`}
+          class={styles.textarea}
+          name={field.name}
+          required={field.required}
+        />
+      ) : field.type === 'select' ? (
+        <select
+          id={`${formId}-${field.name}`}
+          class={styles.select}
+          name={field.name}
+          required={field.required}
+        >
+          <option value="">Select...</option>
+          {field.options?.map((opt: string) => (
+            <option value={opt}>{opt}</option>
+          ))}
+        </select>
+      ) : field.type === 'number' ? (
+        <input
+          id={`${formId}-${field.name}`}
+          class={styles.input}
+          type="number"
+          name={field.name}
+          required={field.required}
+        />
+      ) : field.type === 'checkbox' ? (
+        <div class={styles.addonItem}>
+          <input
+            id={`${formId}-${field.name}`}
+            class={styles.checkbox}
+            type="checkbox"
+            name={field.name}
+          />
+          <span class={styles.addonLabel}>{field.label}</span>
+        </div>
+      ) : (
+        <input
+          id={`${formId}-${field.name}`}
+          class={styles.input}
+          type="text"
+          name={field.name}
+          required={field.required}
+        />
+      )}
+    </div>
+  ))}
+
+  <!-- Addons -->
+  {data.form.addons.length > 0 && (
+    <div class={styles.addonsSection}>
+      <p class={styles.addonsTitle}>Additional Options</p>
+      {data.form.addons.map((addon) => (
+        <div class={styles.addonItem}>
+          <input
+            id={`${formId}-addon-${addon.id}`}
+            class={styles.checkbox}
+            type="checkbox"
+            name={`addon_${addon.id}`}
+            data-addon-id={addon.id}
+          />
+          <label class={styles.addonLabel} for={`${formId}-addon-${addon.id}`}>
+            {addon.label}
+          </label>
+          <span class={styles.addonPrice}>{addon.price}</span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <button type="submit" class={styles.submitBtn}>Submit Commission Request</button>
+  <div id={`${formId}-message`} class={styles.message} style="display: none;"></div>
+</form>
+
+<script define:vars={{ formId, slug: data.slug, apiBase: '/api' }}>
+  const form = document.getElementById(formId);
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const messageDiv = document.getElementById(`${formId}-message`);
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+      messageDiv.style.display = 'none';
+
+      const formData = new FormData(form);
+      const fields = {};
+      const addons = [];
+
+      for (const [key, value] of formData.entries()) {
+        if (key.startsWith('addon_')) {
+          addons.push(key.replace('addon_', ''));
+        } else if (key === 'contact_name' || key === 'contact_email') {
+          // handled separately
+        } else {
+          fields[key] = value;
+        }
+      }
+
+      const payload = {
+        service_slug: slug,
+        contact_name: formData.get('contact_name'),
+        contact_email: formData.get('contact_email'),
+        fields,
+        addons,
+      };
+
+      try {
+        const response = await fetch(`${apiBase}/commissions`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+          messageDiv.textContent = 'Commission request submitted successfully! I\'ll get back to you soon.';
+          messageDiv.className = `${messageDiv.className.split(' ')[0]} success`;
+          messageDiv.style.display = 'block';
+          form.reset();
+        } else {
+          const err = await response.json();
+          messageDiv.textContent = err.detail || 'Something went wrong. Please try again.';
+          messageDiv.className = `${messageDiv.className.split(' ')[0]} error`;
+          messageDiv.style.display = 'block';
+        }
+      } catch (err) {
+        messageDiv.textContent = 'Network error. Please check your connection and try again.';
+        messageDiv.className = `${messageDiv.className.split(' ')[0]} error`;
+        messageDiv.style.display = 'block';
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Commission Request';
+    });
+  }
+</script>

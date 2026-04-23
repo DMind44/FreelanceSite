@@ -1,0 +1,17 @@
+---
+import siteData from '../data/site';
+import styles from '../styles/hero.module.css';
+---
+
+<section class={styles.hero}>
+  <p class={styles.tagline}>{siteData.tagline}</p>
+  <h1 class={styles.title}>{siteData.name}</h1>
+  <p class={styles.subtitle}>
+    Game developer and programmer specializing in engaging gameplay experiences
+    and robust technical solutions.
+  </p>
+  <div class={styles.actions}>
+    <a href="/projects" class={styles.primaryBtn}>View Projects</a>
+    <a href="/storefront" class={styles.secondaryBtn}>Commission Work</a>
+  </div>
+</section>

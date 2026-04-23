@@ -1,0 +1,41 @@
+---
+import CommissionForm from './CommissionForm.astro';
+import styles from '../styles/service-card.module.css';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  service: CollectionEntry<'services'>;
+}
+
+const { service } = Astro.props;
+const { data } = service;
+const categoryLabels: Record<string, string> = {
+  development: 'Development',
+  consultation: 'Consultation',
+  art: 'Art & Assets',
+  other: 'Other',
+};
+---
+
+<div class={styles.card} id={`service-${data.slug}`}>
+  <span class={styles.category}>{categoryLabels[data.category] || data.category}</span>
+  <h3 class={styles.title}>{data.title}</h3>
+  <p class={styles.price}>{data.price}</p>
+  <p class={styles.description}>{data.description}</p>
+  <button
+    class={`${styles.toggleBtn}`}
+    data-service-slug={data.slug}
+    onclick={`document.getElementById('form-${data.slug}').classList.toggle('formHidden'); this.classList.toggle('${styles.toggleBtnOpen}'); this.textContent = this.classList.contains('${styles.toggleBtnOpen}') ? 'Close Form' : 'Commission This';`}
+  >
+    Commission This
+  </button>
+  <div id={`form-${data.slug}`} class={`${styles.formSection} formHidden`}>
+    <CommissionForm service={service} />
+  </div>
+</div>
+
+<style is:global>
+  .formHidden {
+    display: none;
+  }
+</style>

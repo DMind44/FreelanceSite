@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "price": {
+      "default": "",
+      "type": "string"
+    },
+    "priceType": {
+      "default": "quote",
+      "type": "string",
+      "enum": [
+        "quote",
+        "fixed",
+        "hourly"
+      ]
+    },
+    "category": {
+      "default": "other",
+      "type": "string",
+      "enum": [
+        "development",
+        "consultation",
+        "art",
+        "other"
+      ]
+    },
+    "featured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "order": {
+      "default": 0,
+      "type": "number"
+    },
+    "form": {
+      "default": {
+        "fields": [],
+        "addons": []
+      },
+      "type": "object",
+      "properties": {
+        "fields": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text",
+                  "select",
+                  "textarea",
+                  "number",
+                  "checkbox"
+                ]
+              },
+              "options": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "required": {
+                "default": false,
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "name",
+              "label",
+              "type"
+            ]
+          }
+        },
+        "addons": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "price": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "label",
+              "price"
+            ]
+          }
+        }
+      }
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "description"
+  ]
+}

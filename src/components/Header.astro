@@ -1,0 +1,15 @@
+---
+import siteData from '../data/site';
+import styles from '../styles/header.module.css';
+---
+
+<header class={styles.header}>
+  <div class={`container ${styles.inner}`}>
+    <a href="/" class={styles.logo}>{siteData.name}</a>
+    <nav class={styles.nav}>
+      <a href="/" class={styles.link}>Home</a>
+      <a href="/projects" class={styles.link}>Projects</a>
+      <a href="/storefront" class={styles.link}>Storefront</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectList from '../../components/ProjectList.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => (b.data.year || 0) - (a.data.year || 0));
+---
+
+<BaseLayout title="Projects" description="Portfolio of game development and programming projects.">
+  <section style="padding: var(--space-3xl) 0;">
+    <h1>Projects</h1>
+    <p style="color: var(--color-text-muted); margin: var(--space-md) 0 var(--space-xl); max-width: 600px;">
+      A collection of games, tools, and libraries I've built. Each project represents
+      a unique technical and creative challenge.
+    </p>
+    <ProjectList projects={sortedProjects} />
+  </section>
+</BaseLayout>

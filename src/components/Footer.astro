@@ -1,0 +1,28 @@
+---
+import siteData from '../data/site';
+import styles from '../styles/footer.module.css';
+---
+
+<footer class={styles.footer}>
+  <div class={`container ${styles.inner}`}>
+    <div class={styles.contact}>
+      {siteData.email && (
+        <a href={`mailto:${siteData.email}`} class={styles.link}>{siteData.email}</a>
+      )}
+      {siteData.phone && (
+        <span class={styles.detail}>{siteData.phone}</span>
+      )}
+      {siteData.location && (
+        <span class={styles.detail}>{siteData.location}</span>
+      )}
+    </div>
+    <div class={styles.social}>
+      {siteData.social.map((item) => (
+        <a href={item.url} target="_blank" rel="noopener noreferrer" class={styles.socialLink}>
+          {item.label}
+        </a>
+      ))}
+    </div>
+    <p class={styles.copyright}>{siteData.footer.copyright}</p>
+  </div>
+</footer>

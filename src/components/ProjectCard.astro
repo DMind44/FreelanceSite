@@ -1,0 +1,34 @@
+---
+import styles from '../styles/project-card.module.css';
+
+interface Props {
+  title: string;
+  slug: string;
+  description: string;
+  image?: string;
+  tags: string[];
+  role: string;
+  tech: string[];
+  year?: number;
+}
+
+const { title, slug, description, image, tags, role, tech, year } = Astro.props;
+---
+
+<a href={`/projects/${slug}`} class={styles.card}>
+  {image && <img src={image} alt={title} class={styles.image} />}
+  <div class={styles.body}>
+    <h3 class={styles.title}>{title}</h3>
+    <p class={styles.description}>{description}</p>
+    <div class={styles.tags}>
+      {tags.map((tag: string) => <span class={styles.tag}>{tag}</span>)}
+    </div>
+    <div class={styles.meta}>
+      <span class={styles.role}>{role}</span>
+      {year && <span class={styles.year}>{year}</span>}
+    </div>
+    <div class={styles.techList}>
+      {tech.map((t: string) => <span class={styles.techItem}>{t}</span>)}
+    </div>
+  </div>
+</a>

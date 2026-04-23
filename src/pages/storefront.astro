@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { getCollection } from 'astro:content';
+
+const services = await getCollection('services');
+const sortedServices = services.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Storefront" description="Commission game development services, technical consultation, and art assets.">
+  <section style="padding: var(--space-3xl) 0;">
+    <h1>Storefront</h1>
+    <p style="color: var(--color-text-muted); margin: var(--space-md) 0 var(--space-2xl); max-width: 600px;">
+      Choose a service below and fill out the commission form. I'll review your request
+      and get back to you within 48 hours.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: var(--space-xl);">
+      {sortedServices.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

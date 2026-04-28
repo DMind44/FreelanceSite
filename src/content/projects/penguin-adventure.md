@@ -2,7 +2,7 @@
 title: 'Penguin Adventure'
 slug: 'penguin-adventure'
 description: 'An immersive penguin walking simulator. Help a drunk penguin get home from the bar!'
-image: '../../../public/static/penguin1.png'
+image: '/images/penguin1.png'
 tags: ['unity', 'gamedev']
 role: 'Programmer & Designer'
 tech: ['Unity']

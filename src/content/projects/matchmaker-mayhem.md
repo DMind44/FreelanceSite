@@ -2,7 +2,7 @@
 title: 'Matchmaker Mayhem'
 slug: 'matchmaker-mayhem'
 description: 'A true test of communication, match compatible singles on dates before time runs out in this chaotic tabletop game.'
-image: '../../../public/static/matchmakercover.png'
+image: '/images/matchmakercover.png'
 tags: ['tabletop', 'gamedev']
 role: ''
 tech: []

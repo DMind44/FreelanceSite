@@ -2,7 +2,7 @@
 title: 'Unchained: Tale of Enra'
 slug: 'unchained'
 description: 'Tactics meet empathy; diplomacy and building trust is your greatest weapon.'
-image: '../../../public/static/unchainedcover.png'
+image: '/images/unchainedcover.png'
 tags: ['unity', 'gamedev']
 role: 'Usability'
 tech: ['Unity']

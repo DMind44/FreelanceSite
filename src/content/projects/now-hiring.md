@@ -2,7 +2,7 @@
 title: 'Now Hiring: Shadow Government'
 slug: 'now-hiring'
 description: 'Play as job recruiters in the shadow government competing to get your cohorts hired, and you must stop at no end to do so -- even if it means digging up dirt on your coworkers applicants.'
-image: '../../../public/static/nowhiringlogo.png'
+image: '/images/nowhiringlogo.jpg'
 tags: ['tabletop', 'gamedev']
 role: 'Usability Lead'
 tech: []

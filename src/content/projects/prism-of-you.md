@@ -2,7 +2,7 @@
 title: 'Prism of You'
 slug: 'prism-of-you'
 description: 'Emergent sandbox of emotional expression within the mysterious world of the Prism'
-image: '../../../public/static/prismcover.png'
+image: '/images/prismcover.png'
 tags: ['unity', 'gamedev']
 role: 'Gameplay Engineer'
 tech: ['Unity']

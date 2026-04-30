@@ -1,11 +1,11 @@
 ---
-title: "Technical Consultation"
-slug: "consultation"
+title: "Rapid Game Protoyping"
+slug: "rapid-game-prototyping"
 description: "Expert guidance on game architecture, technology choices, and project planning."
 image: "/images/consultation-service.png"
 price: "$100/hour"
 priceType: "hourly"
-category: "consultation"
+category: "development"
 featured: true
 order: 2
 form:
